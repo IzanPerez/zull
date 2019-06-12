@@ -15,20 +15,9 @@ public class Item
         
     }
 
-    public double getPesoItem(){
-        return pesoItem;
+    public String getInfoItem()
+    {
+        return descripcionItem + " tiene un peso de " + pesoItem + " Kg";
     }
-    public String getInfoItem(){
-        String info = "Item: " + descripcionItem + " tiene un peso de: " + pesoItem;
-        return info; 
-    }
-    public String getDescripcionItem(){
-        return descripcionItem;
-    }
-
-    
-
-    
-    
      
 }

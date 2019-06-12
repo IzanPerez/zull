@@ -1,9 +1,6 @@
-
-
-
-
 import java.util.HashMap;
 import java.util.Set;
+import java.util.ArrayList;
 /**
  * Class Room - a room in an adventure game.
  *
@@ -21,21 +18,21 @@ import java.util.Set;
 public class Room 
 {
     private String description;
-    private Item item;
     private HashMap<String, Room> exits;
     private HashMap<String, Item> roomItem;
+    private ArrayList <Item>listaItems;
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description, Item item) 
+    public Room(String description ) 
     {
         this.description = description;
-        this.item = item;
         exits = new HashMap<>();
         roomItem = new HashMap<>();
+        listaItems = new ArrayList<>();
     }
 
     /**
@@ -48,7 +45,7 @@ public class Room
      */
     public void setExits(String direccion, Room nextRoom ) 
     {
-       exits.put(direccion,nextRoom);
+        exits.put(direccion,nextRoom);
     }
 
     /**
@@ -58,43 +55,57 @@ public class Room
     {
         return description;
     }
+
     public Room getExit (String direccion){
-        
+
         return exits.get(direccion);
     }
+
     public String getExitString(){
-       Set<String> nombreDireciones = exits.keySet();
-       String exitDescription = "Salida ";
-       for(String direccion : nombreDireciones){
-           exitDescription += direccion + " ";
-       }
-       return exitDescription;
+        Set<String> nombreDireciones = exits.keySet();
+        String exitDescription = "Salida ";
+        for(String direccion : nombreDireciones){
+            exitDescription += direccion + " ";
+        }
+        return exitDescription;
     }
-    
+
     public String getLongDescription(){
-        
-        return "Tu estas" + description + " " + getLongDescriptionItem() +".\n" +getExitString();
+
+        return "Tu " + description + " " + getLongDescriptionItem() +".\n" +getExitString();
     }
-    
+
     public Item getRoomItemns (String room){
         return roomItem.get(room);
     }
+
     public String getItemsString(){
-       Set<String> nombreHabitaciones = roomItem.keySet();
-       String exitDescription = " ";
-       for(String item : nombreHabitaciones){
-           exitDescription += item + " ";
-       }
-       return exitDescription;
+        Set<String> nombreHabitaciones = roomItem.keySet();
+        String exitDescription = " ";
+        for(String item : nombreHabitaciones){
+            exitDescription += item + " ";
+        }
+        return exitDescription;
     }
-    
+
     public void setRoomItems(String room, Item item ) 
     {
         roomItem.put(room,item);
     }
-    
+
     public String getLongDescriptionItem(){
+        String itemHabitacion = "";
         
-        return "Tu encuentras un" + getItemsString() + ".\n tiene un pedo de "  + " Kg" ;
+        if(listaItems.size() > 0){
+            for(int i = 0; i < listaItems.size(); i++){
+                itemHabitacion += listaItems.get(i).getInfoItem() + " \n " ;
+            }
+            
+        }
+        return "Encuentras una " + getItemsString() +  "\n" + itemHabitacion ;
+    }
+    
+    public void addItem(Item roomItem){
+        listaItems.add(roomItem);
     }
 }

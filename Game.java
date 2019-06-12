@@ -29,8 +29,7 @@ public class Game
         createRooms();
         parser = new Parser();
     }
-    
-    
+
     
     /**
      * Create all the rooms and link their exits together.
@@ -40,15 +39,15 @@ public class Game
         Room caverna, oscura, pasadizo, trampa, salida,nido, iluminada , foso, cofre;
 
         // create the rooms
-        caverna = new Room("estas en una caverna,en ella hay una antorcha que te ilumina un poco la sala", null);
-        oscura = new Room("estas en una caverna totalmente a oscuras, todas las direcciones parece igual de buenas", null);
-        pasadizo = new Room("atraviesa un pasadizo estreche, no ves nada solo rocas y pasadizos",null);
-        trampa = new Room("caes en una trampa de pinchos que te atrviesan todo el cuerop.Has Muerto",null);
-        salida = new Room("has encontrada la salida!",null);
-        nido = new Room("te encuentras con un nido de murcielagos,parece que estan muy dormidos",null);
-        iluminada = new Room("estas en una caverna en la que se aprecia algo de luz natural",null);
-        foso = new Room("estas en una caverna en la que se aprecia un foso muy hondo",null);
-        cofre = new Room("encuentras un cofre de madera que tiene una cerradura muy oxidada",null);
+        caverna = new Room("estas en una caverna,no sabes como has llegado alli.");
+        oscura = new Room("estas en una caverna totalmente a oscuras, todas las direcciones parece igual de buenas");
+        pasadizo = new Room("atraviesa un pasadizo estreche, no ves nada solo rocas y pasadizos");
+        trampa = new Room("caes en una trampa de pinchos que te atrviesan todo el cuerop.Has Muerto");
+        salida = new Room("has encontrada la salida!");
+        nido = new Room("te encuentras con un nido de murcielagos,parece que estan muy dormidos");
+        iluminada = new Room("estas en una caverna en la que se aprecia algo de luz natural");
+        foso = new Room("estas en una caverna en la que se aprecia un foso muy hondo");
+        cofre = new Room("encuentras un cofre de madera que tiene una cerradura muy oxidada");
         // initialise room exits
         caverna.setExits( "north",oscura);
         caverna.setExits("east",pasadizo);
@@ -63,6 +62,13 @@ public class Game
         iluminada.setExits("south",pasadizo);
         iluminada.setExits("northesast",cofre);
         
+        caverna.addItem(new Item("antorcha encendida",2));
+        caverna.addItem(new Item("mochila algo desgastada",0.5));
+        oscura.addItem(new Item("cuerda algo vieja, unos 3m de largo", 2));
+        pasadizo.addItem(new Item("cantimplora que parece que tiene algo de agua",1));
+        iluminada.addItem(new Item("guantes de montaña pueden ser de utilidad",0.2));
+        cofre.addItem(new Item("abres el cofre y encuentras comida",0.5));
+        foso.addItem(new Item("en el fondo del foso hay un mapa de la caverna", 0.1));
         currentRoom = caverna;  // start game outside
     }
 
@@ -197,7 +203,7 @@ public class Game
     private void look() {   
         System.out.println(currentRoom.getLongDescription());
     }
-    
+
     private void eat() {    
         System.out.println("Acabas de comer y ya no tienes hambre");
     }
