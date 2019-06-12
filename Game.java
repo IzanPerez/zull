@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.Stack;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -20,8 +20,8 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private Item item;
     private Room ultimaSala;
+    private Stack <Room> pilaSalas;
     /**
      * Create the game and initialise its internal map.
      */
@@ -30,6 +30,7 @@ public class Game
         createRooms();
         parser = new Parser();
         ultimaSala = null;
+        pilaSalas = new Stack<Room>();
     }
 
     
@@ -163,8 +164,7 @@ public class Game
      * the new room, otherwise print an error message.
      */
     private void goRoom(Command command) 
-    {
-        ultimaSala = currentRoom;
+    {        
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             System.out.println("Donde quieres ir?");
@@ -172,7 +172,7 @@ public class Game
         }
 
         String direction = command.getSecondWord();
-
+        pilaSalas.push(currentRoom);
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
         if (nextRoom == null) {
@@ -216,8 +216,10 @@ public class Game
     }
     
     private void back(){
-        if(ultimaSala != null){
-            currentRoom = ultimaSala;
+        if(pilaSalas.empty()){
+            System.out.println("No puedes volver atras, estas en la primera caverna");
+        }else{
+            currentRoom = pilaSalas.pop();
             printLocationInfo();
         }
         
