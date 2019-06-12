@@ -1,0 +1,8 @@
+caverna : antorcha : antorchan encendida,te proporciona algo de luz
+Oscura : cuerda : una cuerdad algo vieja, unos 3 metros de largo
+murcielagos : animalMurcielago : mircielagos en el techo te observa
+estrecho : cantimplora : encuentras una cantimplora que pare que tiene algo de agua
+iluminada : guantes : guantes de montaña pueden ser de utilidad
+cofre : oro : oro muy brillante, parece que tiene mucho valor
+trampa : muerte : has muerto por caer en una trampa de pinchos
+foso : mapa : mapa que parece ser de la caverna
