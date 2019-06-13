@@ -25,4 +25,7 @@ public class Item
     public String getId(){
         return id;
     }
+    public boolean getSePuedeCojer(){
+        return sePuedeCojer;
+    }
 }

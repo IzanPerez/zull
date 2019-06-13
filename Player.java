@@ -4,9 +4,9 @@ public class Player
 {
     private Room currentRoom;
     private Stack<Room> pilaSalas;    
-    public Player()
+    public Player(Room sala)
     {
-        currentRoom = null;
+        currentRoom = sala;
         pilaSalas = new Stack<Room>();
     }
 
@@ -62,8 +62,8 @@ public class Player
         }
         String IDposidicon= command.getSecondWord();
         Item objetoACoger = currentRoom.getItem(IDposidicon);
-
-        if (objetoACoger != null){
+        boolean aptoCoger = objetoACoger.getSePuedeCojer();
+        if (objetoACoger != null && aptoCoger){
             System.out.println("Has cogido el siguiente objeto: \n" );
             System.out.println(objetoACoger.getInfoItem());
             

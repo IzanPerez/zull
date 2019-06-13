@@ -108,6 +108,7 @@ public class Room
     public void addItem(Item roomItem){
         listaItems.add(roomItem);
     }
+    
     public Item getItem(String id){
         boolean esta = true;
         int contador = 0;

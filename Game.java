@@ -32,14 +32,14 @@ public class Game
         parser = new Parser();
         ultimaSala = null;
         pilaSalas = new Stack<Room>();
-        jugador = new Player();
+        jugador = new Player(createRooms());
     }
 
     
     /**
      * Create all the rooms and link their exits together.
      */
-    private void createRooms()
+    private Room createRooms()
     {
         Room caverna, oscura, pasadizo, trampa, salida,nido, iluminada , foso, cofre;
 
@@ -68,13 +68,14 @@ public class Game
         iluminada.setExits("northesast",cofre);
         
         caverna.addItem(new Item("antorcha encendida",2,"cod1",true));
-        caverna.addItem(new Item("casco algo desgastada",0.5,"cod2",true));
+        caverna.addItem(new Item("casco algo desgastada",0.5,"cod2",false));
         oscura.addItem(new Item("cuerda algo vieja, unos 3m de largo", 2,"cod3",true));
         pasadizo.addItem(new Item("cantimplora que parece que tiene algo de agua",1,"cod4",true));
         iluminada.addItem(new Item("guantes de montaña pueden ser de utilidad",0.2,"cod5",true));
         cofre.addItem(new Item("abres el cofre y encuentras comida",0.5,"cod6",true));
         foso.addItem(new Item("en el fondo del foso hay un mapa de la caverna", 0.1,"cod7",false));
-        currentRoom = caverna;  // start game outside
+        
+        return caverna;// start game outside
     }
 
     /**
@@ -105,7 +106,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        printLocationInfo();
+        jugador.look();
     }
 
     /**
@@ -185,7 +186,7 @@ public class Game
         }
         else {
             currentRoom = nextRoom;
-            printLocationInfo();
+            jugador.look();
         }
         
     }
@@ -206,12 +207,12 @@ public class Game
         }
     }
 
+    
+        
     private void printLocationInfo(){
         System.out.println(currentRoom.getLongDescription());
         System.out.println();
 
     }
-        
-    
 }
 
