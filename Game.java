@@ -21,6 +21,7 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Room ultimaSala;
+    private Player jugador;
     private Stack <Room> pilaSalas;
     /**
      * Create the game and initialise its internal map.
@@ -31,6 +32,7 @@ public class Game
         parser = new Parser();
         ultimaSala = null;
         pilaSalas = new Stack<Room>();
+        jugador = new Player();
     }
 
     
@@ -65,13 +67,13 @@ public class Game
         iluminada.setExits("south",pasadizo);
         iluminada.setExits("northesast",cofre);
         
-        caverna.addItem(new Item("antorcha encendida",2));
-        caverna.addItem(new Item("mochila algo desgastada",0.5));
-        oscura.addItem(new Item("cuerda algo vieja, unos 3m de largo", 2));
-        pasadizo.addItem(new Item("cantimplora que parece que tiene algo de agua",1));
-        iluminada.addItem(new Item("guantes de montaña pueden ser de utilidad",0.2));
-        cofre.addItem(new Item("abres el cofre y encuentras comida",0.5));
-        foso.addItem(new Item("en el fondo del foso hay un mapa de la caverna", 0.1));
+        caverna.addItem(new Item("antorcha encendida",2,"cod1",true));
+        caverna.addItem(new Item("casco algo desgastada",0.5,"cod2",true));
+        oscura.addItem(new Item("cuerda algo vieja, unos 3m de largo", 2,"cod3",true));
+        pasadizo.addItem(new Item("cantimplora que parece que tiene algo de agua",1,"cod4",true));
+        iluminada.addItem(new Item("guantes de montaña pueden ser de utilidad",0.2,"cod5",true));
+        cofre.addItem(new Item("abres el cofre y encuentras comida",0.5,"cod6",true));
+        foso.addItem(new Item("en el fondo del foso hay un mapa de la caverna", 0.1,"cod7",false));
         currentRoom = caverna;  // start game outside
     }
 
@@ -128,16 +130,19 @@ public class Game
             goRoom(command);
         }
         else if (commandWord.equals("look")) {  
-            look();
+            jugador.look();
         }
         else if (commandWord.equals("back")) {   
-            back();
+            jugador.back();
         }
         else if (commandWord.equals("eat")) {   
-            eat();
+            jugador.eat();
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
+        }
+        else if (commandWord.equals("take")) {
+            jugador.take(command);
         }
 
         return wantToQuit;
@@ -206,23 +211,7 @@ public class Game
         System.out.println();
 
     }
-
-    private void look() {   
-        System.out.println(currentRoom.getLongDescription());
-    }
-
-    private void eat() {    
-        System.out.println("Acabas de comer y ya no tienes hambre");
-    }
-    
-    private void back(){
-        if(pilaSalas.empty()){
-            System.out.println("No puedes volver atras, estas en la primera caverna");
-        }else{
-            currentRoom = pilaSalas.pop();
-            printLocationInfo();
-        }
         
-    }
+    
 }
 

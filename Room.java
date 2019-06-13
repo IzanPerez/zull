@@ -108,4 +108,21 @@ public class Room
     public void addItem(Item roomItem){
         listaItems.add(roomItem);
     }
+    public Item getItem(String id){
+        boolean esta = true;
+        int contador = 0;
+        Item itemADeVolver= null;
+        while ( listaItems.size() > contador && esta){
+            if (listaItems.get(contador).getId().equals(id)){
+                itemADeVolver = listaItems.get(contador);
+                esta = false;
+            }
+            contador++;
+        }
+        return itemADeVolver;
+    }
+    
+     public void removeItem(Item item){
+        listaItems.remove(item);
+    }
 }
