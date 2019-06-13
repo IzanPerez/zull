@@ -5,11 +5,14 @@ public class Player
     private Room currentRoom;
     private Stack<Room> pilaSalas;
     private ArrayList <Item> mochila;
+    private double pesoMochila;
+    private static final double MAXIMO_PESO = 7.5;
     public Player(Room sala)
     {
         currentRoom = sala;
         pilaSalas = new Stack<Room>();
         mochila = new ArrayList<Item>();
+        pesoMochila = 0;
     }
 
     public void setCurrentRoom(Room room){
@@ -65,10 +68,10 @@ public class Player
         String IDposidicon= command.getSecondWord();
         Item objetoACoger = currentRoom.getItem(IDposidicon);
         boolean aptoCoger = objetoACoger.getSePuedeCojer();
-        if (objetoACoger != null && aptoCoger){
+        if (objetoACoger != null && aptoCoger && pesoMochila +  objetoACoger.getPesoItem() < MAXIMO_PESO ){
             System.out.println("Has cogido el siguiente objeto: \n" );
             System.out.println(objetoACoger.getInfoItem());
-            
+            pesoMochila += objetoACoger.getPesoItem();
             mochila.add(objetoACoger);
             currentRoom.removeItem(objetoACoger);
         }else{

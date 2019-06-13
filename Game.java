@@ -68,7 +68,7 @@ public class Game
         iluminada.setExits("northesast",cofre);
         
         caverna.addItem(new Item("antorcha encendida",2,"cod1",true));
-        caverna.addItem(new Item("casco algo desgastada",0.5,"cod2",false));
+        caverna.addItem(new Item("casco algo desgastada",8.5,"cod2",true));
         oscura.addItem(new Item("cuerda algo vieja, unos 3m de largo", 2,"cod3",true));
         pasadizo.addItem(new Item("cantimplora que parece que tiene algo de agua",1,"cod4",true));
         iluminada.addItem(new Item("guantes de montaña pueden ser de utilidad",0.2,"cod5",true));

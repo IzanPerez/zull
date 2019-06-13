@@ -21,7 +21,9 @@ public class Item
     {
         return descripcionItem + " tiene un peso de " + pesoItem + " Kg " + " ID: " + id;
     }
-
+    public double getPesoItem(){
+        return pesoItem;
+    }
     public String getId(){
         return id;
     }
