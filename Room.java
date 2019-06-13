@@ -126,4 +126,6 @@ public class Room
      public void removeItem(Item item){
         listaItems.remove(item);
     }
+    
+    
 }

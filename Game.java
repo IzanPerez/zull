@@ -128,7 +128,7 @@ public class Game
             printHelp();
         }
         else if (commandWord.equals("go")) {
-            goRoom(command);
+            jugador.goRoom(command);
         }
         else if (commandWord.equals("look")) {  
             jugador.look();
@@ -151,6 +151,9 @@ public class Game
         else if (commandWord.equals("drop")) {
             jugador.drop(command);
         }
+        else if (commandWord.equals("cuerda")) {
+            jugador.cuerda(command);
+        }
         return wantToQuit;
     }
 
@@ -169,33 +172,7 @@ public class Game
         System.out.println("Los comandos habilitados para utilizar:");
         parser.showCommands();
     }
-
-    /** 
-     * Try to go in one direction. If there is an exit, enter
-     * the new room, otherwise print an error message.
-     */
-    private void goRoom(Command command) 
-    {        
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Donde quieres ir?");
-            return;
-        }
-
-        String direction = command.getSecondWord();
-        pilaSalas.push(currentRoom);
-        // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
-        if (nextRoom == null) {
-            System.out.println("Por ahi no se puede ir!");
-        }
-        else {
-            currentRoom = nextRoom;
-            jugador.look();
-        }
-        
-    }
-
+    
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.

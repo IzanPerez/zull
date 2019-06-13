@@ -58,7 +58,7 @@ public class Player
     public void eat() {    
         System.out.println("Acabas de comer y ya no tienes hambre");
     }
-
+    
     public void take(Command command) 
     {
         if(!command.hasSecondWord()) {
@@ -118,6 +118,18 @@ public class Player
         }
         else{
             System.out.println("No tienes objetos para soltar");
+        }
+    }
+    
+    public void cuerda(Command command){
+         if(!command.hasSecondWord()) {
+            System.out.println("No has indicado el ID del objeto");
+            return;
+        }
+        String segundaPalabraUsar = command.getSecondWord();
+        Item esUnCuerda = currentRoom.getItem(segundaPalabraUsar);
+        if (segundaPalabraUsar.equals("cod3")){
+            System.out.println("Magnifico has conseguido salir gracias a una cuerdaHuida(Refencia Pokemon)");
         }
     }
 }
