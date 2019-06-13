@@ -3,11 +3,13 @@ import java.util.Stack;
 public class Player
 {
     private Room currentRoom;
-    private Stack<Room> pilaSalas;    
+    private Stack<Room> pilaSalas;
+    private ArrayList <Item> mochila;
     public Player(Room sala)
     {
         currentRoom = sala;
         pilaSalas = new Stack<Room>();
+        mochila = new ArrayList<Item>();
     }
 
     public void setCurrentRoom(Room room){
@@ -67,10 +69,24 @@ public class Player
             System.out.println("Has cogido el siguiente objeto: \n" );
             System.out.println(objetoACoger.getInfoItem());
             
-            
+            mochila.add(objetoACoger);
             currentRoom.removeItem(objetoACoger);
         }else{
             System.out.println("No puedes coger el item");
         }
     }
+    
+    public void mochilaItems() 
+    {
+        if (mochila.size() > 0){
+            System.out.println("Tu mochila contiene estos items");
+            for (int x = 0; x < mochila.size(); x++){
+                System.out.println(mochila.get(x).getInfoItem());
+                
+            }
+        }
+        else{
+            System.out.println("Tu mochila no contiene nada");
+        }
+}
 }
