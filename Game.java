@@ -68,14 +68,14 @@ public class Game
         iluminada.setExits("northesast",cofre);
         
         caverna.addItem(new Item("antorcha encendida",2,"cod1",true));
-        caverna.addItem(new Item("casco algo desgastada",8.5,"cod2",true));
+        caverna.addItem(new Item("casco algo desgastada",0.5,"cod2",false));
         oscura.addItem(new Item("cuerda algo vieja, unos 3m de largo", 2,"cod3",true));
         pasadizo.addItem(new Item("cantimplora que parece que tiene algo de agua",1,"cod4",true));
         iluminada.addItem(new Item("guantes de montaña pueden ser de utilidad",0.2,"cod5",true));
         cofre.addItem(new Item("abres el cofre y encuentras comida",0.5,"cod6",true));
         foso.addItem(new Item("en el fondo del foso hay un mapa de la caverna", 0.1,"cod7",false));
         
-        return caverna;// start game outside
+        return caverna;
     }
 
     /**
@@ -104,7 +104,7 @@ public class Game
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type 'help' if you need help.");
+        System.out.println("escribe 'help' si necesitas ayuda.");
         System.out.println();
         jugador.look();
     }
