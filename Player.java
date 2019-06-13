@@ -89,4 +89,32 @@ public class Player
             System.out.println("Tu mochila no contiene nada");
         }
 }
+
+ public void drop(Command command) 
+    {
+         if(!command.hasSecondWord()) {
+            // if there is no second word, we don't know the item to take...
+            System.out.println("No has podido dejar el objeto, indica el id correcto");
+            return;
+        }        
+        String itemID = command.getSecondWord();
+        Item itemADejar= null;            
+        int contador = 0;
+        while (mochila.size() > contador && itemADejar == null  ){
+            if (mochila.get(contador).getId().equals(itemID)){
+                itemADejar = mochila.get(contador);
+            }
+            contador++;
+        }
+
+        if (mochila.size() > 0 && itemADejar != null){
+            System.out.println("Has soltado el  objeto \n");
+            System.out.println(itemADejar.getInfoItem());
+            mochila.remove(itemADejar);
+            currentRoom.addItem(itemADejar);
+        }
+        else{
+            System.out.println("No tienes objetos para soltar");
+        }
+    }
 }
